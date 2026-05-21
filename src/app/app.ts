@@ -57,35 +57,84 @@ export class App implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit() {
     // Load manifest then wire everything up dynamically
     this.http.get<AssetsManifest>('assets-manifest.json').subscribe({
-      next: manifest => {
-        // Hero slides — every image in /upcoming
-        this.heroSlides = manifest.upcoming.map(src => ({
-          src,
-          alt: 'ONEKIND Upcoming Show'
-        }));
-        if (this.heroSlides.length) this.startHeroSlideshow();
-
-        // Projects — derive a human-readable title from filename
-        this.projects = manifest.projects.map(src => {
-          const filename = decodeURIComponent(src.split('/').pop() ?? '');
-          const raw = filename.replace(/\.\w+$/, '');  // strip extension
-          // strip leading "N. " numbering pattern
-          const title = raw.replace(/^\d+[\.\d]*\s+/, '').replace(/ -$/, '').trim();
-          const lower = title.toLowerCase();
-          let category = 'LIVE SHOW';
-          if (lower.includes('tour'))     category = 'INDIA TOUR';
-          if (lower.includes('debut'))    category = 'DEBUT SHOW';
-          if (lower.includes('comeback')) category = 'COMEBACK SHOW';
-          if (lower.includes('latest') || lower.includes('kochi')) category = 'LATEST SHOW';
-          return { src, title, category };
-        });
-
-        // Collabs
-        this.artistImages = manifest.collabs_artists;
-        this.brandImages  = manifest.collabs_brands;
-      },
-      error: err => console.error('Failed to load assets-manifest.json', err)
+      next: manifest => this.processManifest(manifest),
+      error: err => {
+        console.error('Failed to load assets-manifest.json, using local fallback manifest:', err);
+        // Robust fallback so the page always renders even if the JSON is blocked or 404s
+        const fallbackManifest: AssetsManifest = {
+          generatedAt: new Date().toISOString(),
+          upcoming: [
+            'assets/upcoming/Purple Flames - Pitch deck 2026_page-0008.jpg',
+            'assets/upcoming/Purple Flames - Pitch deck 2026_page-0010.jpg',
+            'assets/upcoming/Purple Flames - Pitch deck 2026_page-0011.jpg',
+            'assets/upcoming/Purple Flames - Pitch deck 2026_page-0012.jpg',
+            'assets/upcoming/Purple Flames - Pitch deck 2026_page-0013.jpg'
+          ],
+          projects: [
+            'assets/projects/1. Goa Gill Live show poster.jpeg',
+            'assets/projects/1.2. Goa Gill India Tour .jpeg',
+            'assets/projects/2. Immerse with Jonita Gandhi - Debut show poster.jpeg',
+            'assets/projects/3. Immerse with Pradeep Kumar - Debut Show poster.jpeg',
+            'assets/projects/4. Live in Concert with Benny Dayal - Comeback show.jpeg',
+            'assets/projects/5. Journey to Nebulakal Live in Kochi (latest show) .jpeg'
+          ],
+          collabs_artists: [
+            'assets/collabs_artists/Screenshot 2026-05-20 215957.png',
+            'assets/collabs_artists/Screenshot 2026-05-20 220152.png',
+            'assets/collabs_artists/Screenshot 2026-05-20 220219.png',
+            'assets/collabs_artists/Screenshot 2026-05-20 220247.png',
+            'assets/collabs_artists/Screenshot 2026-05-20 220302.png',
+            'assets/collabs_artists/Screenshot 2026-05-20 220321.png',
+            'assets/collabs_artists/Screenshot 2026-05-20 220343.png',
+            'assets/collabs_artists/Screenshot 2026-05-20 220513.png',
+            'assets/collabs_artists/Screenshot 2026-05-20 220532.png'
+          ],
+          collabs_brands: [
+            'assets/collabs_brands/Screenshot 2026-05-20 220659.png',
+            'assets/collabs_brands/Screenshot 2026-05-20 220710.png',
+            'assets/collabs_brands/Screenshot 2026-05-20 220725.png',
+            'assets/collabs_brands/Screenshot 2026-05-20 220734.png',
+            'assets/collabs_brands/Screenshot 2026-05-20 220745.png',
+            'assets/collabs_brands/Screenshot 2026-05-20 220752.png',
+            'assets/collabs_brands/Screenshot 2026-05-20 220800.png',
+            'assets/collabs_brands/Screenshot 2026-05-20 220812.png',
+            'assets/collabs_brands/Screenshot 2026-05-20 220823.png',
+            'assets/collabs_brands/Screenshot 2026-05-20 220835.png',
+            'assets/collabs_brands/Screenshot 2026-05-20 220856.png',
+            'assets/collabs_brands/Screenshot 2026-05-20 220904.png'
+          ]
+        };
+        this.processManifest(fallbackManifest);
+      }
     });
+  }
+
+  private processManifest(manifest: AssetsManifest) {
+    // Hero slides — every image in /upcoming
+    this.heroSlides = manifest.upcoming.map(src => ({
+      src,
+      alt: 'ONEKIND Upcoming Show'
+    }));
+    if (this.heroSlides.length) this.startHeroSlideshow();
+
+    // Projects — derive a human-readable title from filename
+    this.projects = manifest.projects.map(src => {
+      const filename = decodeURIComponent(src.split('/').pop() ?? '');
+      const raw = filename.replace(/\.\w+$/, '');  // strip extension
+      // strip leading "N. " numbering pattern
+      const title = raw.replace(/^\d+[\.\d]*\s+/, '').replace(/ -$/, '').trim();
+      const lower = title.toLowerCase();
+      let category = 'LIVE SHOW';
+      if (lower.includes('tour'))     category = 'INDIA TOUR';
+      if (lower.includes('debut'))    category = 'DEBUT SHOW';
+      if (lower.includes('comeback')) category = 'COMEBACK SHOW';
+      if (lower.includes('latest') || lower.includes('kochi')) category = 'LATEST SHOW';
+      return { src, title, category };
+    });
+
+    // Collabs
+    this.artistImages = manifest.collabs_artists;
+    this.brandImages  = manifest.collabs_brands;
   }
 
   ngAfterViewInit() {
