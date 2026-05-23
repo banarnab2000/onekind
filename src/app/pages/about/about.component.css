@@ -1,0 +1,410 @@
+/* ===========================
+   ABOUT COMPONENT STYLES
+   =========================== */
+
+/* ---- HERO ---- */
+.about-hero {
+  margin-top: 80px;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--black);
+  background-image:
+    radial-gradient(ellipse at 30% 60%, rgba(224, 16, 32, 0.09) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 20%, rgba(224, 16, 32, 0.05) 0%, transparent 50%);
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.about-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 79px,
+    rgba(255,255,255,0.015) 79px,
+    rgba(255,255,255,0.015) 80px
+  ),
+  repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 79px,
+    rgba(255,255,255,0.015) 79px,
+    rgba(255,255,255,0.015) 80px
+  );
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-eyebrow {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  color: var(--red);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  animation: fadeInUp 0.6s ease both;
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4.5rem, 9vw, 10rem);
+  color: var(--white);
+  letter-spacing: 0.05em;
+  line-height: 1;
+  margin: 0 0 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInUp 0.7s ease 0.1s both;
+}
+
+.red-text {
+  color: var(--red);
+}
+
+.red-underline {
+  display: block;
+  height: 4px;
+  background: var(--red);
+  width: 0;
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+  animation: underlineExpand 1s ease 0.7s forwards;
+}
+
+.hero-tagline {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  color: var(--white-muted);
+  margin: 1.5rem 0 0;
+  animation: fadeInUp 0.7s ease 0.25s both;
+}
+
+/* ---- CONTAINER ---- */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--red);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.2rem, 4.5vw, 4rem);
+  color: var(--white);
+  letter-spacing: 0.05em;
+  margin: 0 0 0.8rem;
+  line-height: 1;
+}
+
+.section-sub {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  color: var(--white-dim);
+  margin: 0 0 3rem;
+}
+
+/* ---- MISSION & VISION ---- */
+.mv-section {
+  padding: 8rem 2rem;
+  background: var(--black-soft);
+}
+
+.mv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 0;
+}
+
+.mv-card {
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  border-radius: 8px;
+  padding: 3rem 2.5rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mv-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mv-card:hover {
+  border-color: var(--red);
+  box-shadow: 0 0 40px rgba(224, 16, 32, 0.1);
+  transform: translateY(-4px);
+}
+
+.vision-card {
+  transition-delay: 0.15s;
+}
+
+.mv-icon {
+  width: 52px;
+  height: 52px;
+  background: rgba(224, 16, 32, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.8rem;
+}
+
+.mv-icon svg {
+  width: 24px;
+  height: 24px;
+  color: var(--red);
+}
+
+.mv-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.1em;
+  color: var(--red);
+  margin: 0 0 1rem;
+}
+
+.mv-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  color: var(--white-muted);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ---- STATS BAR ---- */
+.stats-section {
+  padding: 5rem 2rem;
+  background: var(--black);
+  border-top: 1px solid var(--black-border);
+  border-bottom: 1px solid var(--black-border);
+}
+
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--black-border);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2.5rem 1rem;
+  background: var(--black);
+  transition: background 0.3s ease;
+}
+
+.stat-item:hover {
+  background: var(--black-card);
+}
+
+.stat-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--red);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--white-dim);
+  text-transform: uppercase;
+}
+
+/* ---- ARTIST MARQUEE ---- */
+.artists-section {
+  padding: 8rem 0;
+  background: var(--black-soft);
+  overflow: hidden;
+}
+
+.artists-section .container {
+  margin-bottom: 3rem;
+}
+
+.marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: marqueeScroll linear infinite;
+}
+
+.marquee-card {
+  flex-shrink: 0;
+  width: 240px;
+  height: 240px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--black-border);
+  background: var(--black-card);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.marquee-card:hover {
+  border-color: var(--red);
+  box-shadow: 0 0 24px rgba(224, 16, 32, 0.2);
+}
+
+.marquee-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(30%);
+  transition: filter 0.3s ease, transform 0.4s ease;
+}
+
+.marquee-card:hover .marquee-img {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+/* ---- BRAND PARTNERS ---- */
+.brands-section {
+  padding: 8rem 2rem;
+  background: var(--black);
+}
+
+.brands-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.brand-card {
+  width: 140px;
+  height: 90px;
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0.8rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.brand-card:hover {
+  border-color: var(--red);
+  box-shadow: 0 0 20px rgba(224, 16, 32, 0.15);
+  transform: translateY(-3px);
+}
+
+.brand-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(100%) brightness(0.8);
+  transition: filter 0.3s ease;
+}
+
+.brand-card:hover .brand-img {
+  filter: grayscale(0%) brightness(1);
+}
+
+/* ---- ANIMATIONS ---- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes underlineExpand {
+  to { width: 60%; }
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 768px) {
+  .about-hero {
+    min-height: 40vh;
+    padding: 5rem 1.5rem;
+  }
+
+  .mv-section,
+  .artists-section,
+  .brands-section {
+    padding: 5rem 1.5rem;
+  }
+
+  .mv-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .marquee-card {
+    width: 180px;
+    height: 180px;
+  }
+
+  .brand-card {
+    width: 110px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-bar {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .brand-card {
+    width: 90px;
+    height: 60px;
+  }
+}

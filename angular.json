@@ -54,6 +54,8 @@
           },
           "configurations": {
             "production": {
+              "prerender": false,
+              "ssr": false,
               "budgets": [
                 {
                   "type": "initial",
@@ -75,6 +77,9 @@
             }
           },
           "defaultConfiguration": "production"
+        },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n"
         },
         "serve": {
           "builder": "@angular/build:dev-server",

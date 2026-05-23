@@ -1,0 +1,297 @@
+/* ===========================
+   CONTACT COMPONENT STYLES
+   =========================== */
+
+/* ---- HERO ---- */
+.contact-hero {
+  margin-top: 80px;
+  min-height: 45vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--black);
+  background-image:
+    radial-gradient(ellipse at 25% 60%, rgba(224, 16, 32, 0.09) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 25%, rgba(224, 16, 32, 0.05) 0%, transparent 50%);
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.contact-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 79px,
+    rgba(255,255,255,0.015) 79px,
+    rgba(255,255,255,0.015) 80px
+  ),
+  repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 79px,
+    rgba(255,255,255,0.015) 79px,
+    rgba(255,255,255,0.015) 80px
+  );
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-eyebrow {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  color: var(--red);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  animation: fadeInUp 0.6s ease both;
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4.5rem, 9vw, 10rem);
+  color: var(--white);
+  letter-spacing: 0.05em;
+  line-height: 1;
+  margin: 0 0 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInUp 0.7s ease 0.1s both;
+}
+
+.red-text {
+  color: var(--red);
+}
+
+.red-underline {
+  display: block;
+  height: 4px;
+  background: var(--red);
+  width: 0;
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+  animation: underlineExpand 1s ease 0.7s forwards;
+}
+
+.hero-subtitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  color: var(--white-muted);
+  margin: 1.5rem 0 0;
+  animation: fadeInUp 0.7s ease 0.25s both;
+}
+
+/* ---- CONTAINER ---- */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ---- CONTACT CARDS SECTION ---- */
+.contact-cards-section {
+  padding: 8rem 2rem;
+  background: var(--black-soft);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.contact-card {
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  border-radius: 10px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.6s ease both;
+}
+
+.contact-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(224, 16, 32, 0.06) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contact-card:hover::before {
+  opacity: 1;
+}
+
+.contact-card:hover {
+  border-color: var(--red);
+  box-shadow: 0 0 40px rgba(224, 16, 32, 0.15), 0 20px 40px rgba(0,0,0,0.4);
+  transform: translateY(-4px);
+}
+
+/* Stagger card animations */
+.email-card {
+  animation-delay: 0.1s;
+}
+
+.phone-card {
+  animation-delay: 0.2s;
+}
+
+/* ---- CARD ICON ---- */
+.card-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.instagram-icon {
+  background: linear-gradient(135deg, rgba(240, 148, 51, 0.15), rgba(188, 24, 136, 0.15));
+  border: 1px solid rgba(188, 24, 136, 0.3);
+}
+
+.email-icon {
+  background: rgba(224, 16, 32, 0.1);
+  border: 1px solid rgba(224, 16, 32, 0.25);
+}
+
+.phone-icon {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.card-icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+/* ---- CARD TEXT ---- */
+.card-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  color: var(--white-dim);
+  text-transform: uppercase;
+}
+
+.card-value {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--white);
+  word-break: break-all;
+}
+
+.card-value.secondary {
+  color: var(--white-muted);
+  font-size: 0.9rem;
+  margin-top: -0.3rem;
+}
+
+/* ---- INSTAGRAM ARROW ---- */
+.card-arrow {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  width: 20px;
+  height: 20px;
+  color: var(--white-dim);
+  opacity: 0;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.card-arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+.instagram-card:hover .card-arrow {
+  opacity: 1;
+  color: var(--red);
+}
+
+/* ---- FOOTER STRIP ---- */
+.contact-footer-strip {
+  padding: 4rem 2rem;
+  background: var(--black);
+  border-top: 1px solid var(--black-border);
+  text-align: center;
+}
+
+.footer-quote {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  color: var(--white-dim);
+  letter-spacing: 0.06em;
+  margin: 0;
+  font-style: italic;
+}
+
+/* ---- ANIMATIONS ---- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes underlineExpand {
+  to { width: 50%; }
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 768px) {
+  .contact-hero {
+    min-height: 40vh;
+    padding: 5rem 1.5rem;
+  }
+
+  .contact-cards-section {
+    padding: 5rem 1.5rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+
+  .contact-footer-strip {
+    padding: 3rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-card {
+    padding: 2rem 1.5rem;
+  }
+}

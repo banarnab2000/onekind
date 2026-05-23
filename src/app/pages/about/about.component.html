@@ -1,0 +1,95 @@
+<!-- HERO -->
+<section class="about-hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">OUR STORY</div>
+    <h1 class="hero-title">
+      ABOUT <span class="red-text">US</span>
+      <span class="red-underline"></span>
+    </h1>
+    <p class="hero-tagline">Redefining live entertainment. One experience at a time.</p>
+  </div>
+</section>
+
+<!-- MISSION & VISION -->
+<section class="mv-section">
+  <div class="container">
+    <div class="mv-grid">
+      <div class="mv-card mission-card fade-in-up">
+        <div class="mv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="6"/>
+            <circle cx="12" cy="12" r="2"/>
+          </svg>
+        </div>
+        <h3 class="mv-label">MISSION</h3>
+        <p class="mv-text">
+          One Kind is a visionary live entertainment platform that curates original shows and launches breakthrough artists.
+        </p>
+      </div>
+
+      <div class="mv-card vision-card fade-in-up">
+        <div class="mv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+        <h3 class="mv-label">VISION</h3>
+        <p class="mv-text">
+          With a team of leading industry professionals, we design immersive experiences combining new-age technology with creative storytelling, delivering shows that set new standards in entertainment. With a sharp eye for talent discovery and nurturing, we spotlight the next generation of visionaries, always pushing boundaries to create your next big thing!
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-bar">
+      @for (stat of stats; track stat.label) {
+        <div class="stat-item">
+          <span class="stat-value">{{ stat.value }}</span>
+          <span class="stat-label">{{ stat.label }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ARTIST BANK MARQUEE -->
+<section class="artists-section">
+  <div class="container">
+    <div class="section-label">ARTIST BANK</div>
+    <h2 class="section-title">OUR <span class="red-text">TALENT</span></h2>
+    <p class="section-sub">A curated roster of verified, world-class performers.</p>
+  </div>
+
+  <div class="marquee-wrapper">
+    <div class="marquee-track" [style.animationDuration]="marqueeDuration">
+      @for (img of marqueeImages; track $index) {
+        <div class="marquee-card">
+          <img [src]="img" alt="Artist" class="marquee-img" loading="lazy" />
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- BRAND PARTNERS -->
+<section class="brands-section">
+  <div class="container">
+    <div class="section-label">COLLABORATIONS</div>
+    <h2 class="section-title">BRAND <span class="red-text">PARTNERS</span></h2>
+    <p class="section-sub">Trusted by leading brands and entertainment names across India.</p>
+
+    <div class="brands-grid">
+      @for (brand of brandImages; track $index) {
+        <div class="brand-card">
+          <img [src]="brand" alt="Brand Partner" class="brand-img" loading="lazy" />
+        </div>
+      }
+    </div>
+  </div>
+</section>

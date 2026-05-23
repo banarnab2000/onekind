@@ -1,0 +1,22 @@
+<nav class="navbar" [class.scrolled]="scrolled" [class.mobile-open]="mobileOpen">
+  <div class="nav-inner">
+    <a class="nav-logo" (click)="navigate({path:'/'})">
+      <img src="assets/logo.png" alt="ONEKIND" class="logo-img">
+      <span class="logo-text">ONEKIND</span>
+    </a>
+
+    <button class="hamburger" (click)="toggleMobile()" [class.active]="mobileOpen" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" [class.open]="mobileOpen">
+      <li *ngFor="let link of navLinks">
+        <a class="nav-link"
+           [class.active]="isActive(link)"
+           (click)="navigate(link)">
+          {{ link.label }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

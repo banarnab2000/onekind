@@ -1,0 +1,127 @@
+<!-- 404 state -->
+<div class="not-found" *ngIf="notFound">
+  <h2>Show not found.</h2>
+  <button (click)="goBack()">← Back to Projects</button>
+</div>
+
+<ng-container *ngIf="project && !notFound">
+
+  <!-- ===== CINEMATIC HERO ===== -->
+  <section class="project-hero">
+    <img [src]="project.heroSrc" [alt]="project.title" class="project-hero-img">
+    <div class="project-hero-overlay"></div>
+    <div class="project-hero-content">
+      <span class="project-category">{{ project.category }}</span>
+      <h1 class="project-hero-title">{{ project.title }}</h1>
+      <p class="project-hero-subtitle">{{ project.subtitle }}</p>
+      <div class="project-meta">
+        <span>{{ project.artist }}</span>
+        <span class="meta-dot">·</span>
+        <span>{{ project.location }}</span>
+        <span class="meta-dot">·</span>
+        <span>{{ project.year }}</span>
+      </div>
+    </div>
+    <button class="back-btn" (click)="goBack()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      All Projects
+    </button>
+  </section>
+
+  <!-- ===== EVENT DESCRIPTION ===== -->
+  <section class="project-desc-section">
+    <div class="project-desc-inner">
+      <p class="project-tagline">{{ project.tagline }}</p>
+      <p class="project-long-desc">{{ project.longDescription }}</p>
+    </div>
+    <div class="project-desc-details">
+      <div class="detail-item">
+        <span class="detail-label">Artist</span>
+        <span class="detail-value">{{ project.artist }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Location</span>
+        <span class="detail-value">{{ project.location }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Year</span>
+        <span class="detail-value">{{ project.year }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Type</span>
+        <span class="detail-value">{{ project.category }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VIDEOS ===== -->
+  <section class="project-videos" *ngIf="project.videos.length">
+    <div class="section-label">
+      <span class="section-eyebrow">IN MOTION</span>
+      <h2 class="section-heading">VIDEO REEL</h2>
+    </div>
+    <div class="videos-grid" [class.single]="project.videos.length === 1">
+      <div class="video-wrap" *ngFor="let vid of project.videos; let i = index">
+        <video
+          #videoEl
+          [src]="vid"
+          autoplay
+          loop
+          muted
+          playsinline
+          class="project-video"
+          (click)="toggleMute(videoEl)">
+        </video>
+        <button class="sound-btn" (click)="toggleMute(videoEl)" [title]="videoMuted ? 'Tap for sound' : 'Mute'">
+          <svg *ngIf="videoMuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+            <path d="M23 9l-6 6M17 9l6 6"/>
+          </svg>
+          <svg *ngIf="!videoMuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+            <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PHOTO GALLERY ===== -->
+  <section class="project-gallery" *ngIf="project.photos.length">
+    <div class="section-label">
+      <span class="section-eyebrow">THE NIGHT</span>
+      <h2 class="section-heading">GALLERY</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-cell"
+           *ngFor="let photo of project.photos; let i = index"
+           [class]="'gallery-cell ' + tileClass(i)"
+           (click)="openLightbox(i)">
+        <img [src]="photo" [alt]="project.artist + ' - photo ' + (i+1)" class="gallery-img" loading="lazy">
+        <div class="gallery-hover">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</ng-container>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox-backdrop" *ngIf="lightboxOpen && project" (click)="onLightboxBackdrop($event)">
+  <button class="lightbox-close" (click)="closeLightbox()">✕</button>
+  <button class="lightbox-arrow lb-prev" (click)="lightboxPrev()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <div class="lightbox-img-wrap">
+    <img [src]="project.photos[lightboxIndex]" [alt]="project.artist" class="lightbox-img">
+  </div>
+  <button class="lightbox-arrow lb-next" (click)="lightboxNext()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+  <div class="lightbox-counter">{{ lightboxIndex + 1 }} / {{ project.photos.length }}</div>
+</div>

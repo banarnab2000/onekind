@@ -1,0 +1,123 @@
+<section class="services-hero">
+  <div class="hero-inner">
+    <h1 class="hero-title">
+      WHAT WE DO
+      <span class="red-underline"></span>
+    </h1>
+    <p class="hero-subtitle">
+      End-to-end entertainment solutions — artist management, event execution, and brand experiences.
+    </p>
+  </div>
+</section>
+
+<!-- SERVICE CATEGORIES ACCORDION -->
+<section class="accordion-section">
+  <div class="container">
+    <div class="section-label">OUR SERVICES</div>
+    <div class="accordion-list">
+      @for (cat of categories; track cat.id) {
+        <div
+          class="accordion-card"
+          [class.open]="isOpen(cat.id)"
+          (click)="toggleCategory(cat.id)"
+        >
+          <div class="accordion-header">
+            <div class="accordion-icon">
+              @if (cat.icon === 'microphone') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="2" width="6" height="12" rx="3"/>
+                  <path d="M5 10a7 7 0 0 0 14 0"/>
+                  <line x1="12" y1="17" x2="12" y2="22"/>
+                  <line x1="9" y1="22" x2="15" y2="22"/>
+                </svg>
+              }
+              @if (cat.icon === 'star') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              }
+              @if (cat.icon === 'megaphone') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 11l19-9-9 19-2-8-8-2z"/>
+                </svg>
+              }
+              @if (cat.icon === 'palette') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/>
+                  <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
+                  <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/>
+                  <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8z"/>
+                </svg>
+              }
+            </div>
+            <h2 class="accordion-title">{{ cat.title }}</h2>
+            <div class="accordion-chevron">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+          </div>
+          <div class="accordion-body">
+            <ul class="service-list">
+              @for (svc of cat.services; track svc.name) {
+                <li class="service-item">
+                  <span class="svc-dot"></span>
+                  <div class="svc-text">
+                    <strong class="svc-name">{{ svc.name }}</strong>
+                    <span class="svc-desc">{{ svc.description }}</span>
+                  </div>
+                </li>
+              }
+            </ul>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMS WE SOLVE -->
+<section class="solutions-section">
+  <div class="container">
+    <div class="section-label">WHY ONEKIND</div>
+    <h2 class="solutions-title">PROBLEMS WE SOLVE</h2>
+    <p class="solutions-subtitle">We understand the challenges of the entertainment industry.</p>
+
+    <div class="problems-grid">
+      @for (pair of problemSolutions; track pair.problem; let i = $index) {
+        <div class="problem-row">
+          <div class="problem-card">
+            <div class="card-badge">CHALLENGE</div>
+            <p class="card-text">{{ pair.problem }}</p>
+          </div>
+          <div class="arrow-divider">
+            <svg viewBox="0 0 48 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="0" y1="12" x2="40" y2="12"/>
+              <polyline points="32 4 40 12 32 20"/>
+            </svg>
+          </div>
+          <div class="solution-card">
+            <div class="card-badge solution-badge">SOLUTION</div>
+            <p class="card-text">{{ pair.solution }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+  <div class="container cta-inner">
+    <h2 class="cta-title">LET'S CREATE SOMETHING<br><span class="red-text">EXTRAORDINARY</span></h2>
+    <p class="cta-sub">Your vision. Our expertise. One kind of result.</p>
+    <a routerLink="/contact" class="cta-btn">
+      GET IN TOUCH
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </a>
+  </div>
+</section>

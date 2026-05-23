@@ -1,0 +1,109 @@
+<!-- ===== HERO CAROUSEL ===== -->
+<section class="hero">
+  <!-- Slides -->
+  <div class="hero-slides" *ngIf="heroSlides.length; else heroLoading">
+    <div
+      *ngFor="let slide of heroSlides; let i = index"
+      class="hero-slide"
+      [class.active]="i === currentSlide"
+      [class.transitioning]="transitioning">
+      <img [src]="slide.src" alt="ONEKIND Show" class="hero-img" loading="eager">
+      <div class="hero-overlay"></div>
+    </div>
+  </div>
+
+  <ng-template #heroLoading>
+    <div class="hero-loading">
+      <div class="loader-ring"></div>
+    </div>
+  </ng-template>
+
+  <!-- Hero text -->
+  <div class="hero-content">
+    <p class="hero-eyebrow">UPCOMING</p>
+    <h1 class="hero-title">ONEKIND</h1>
+    <p class="hero-sub">Curating the next generation of live entertainment.</p>
+    <button class="hero-cta" (click)="scrollToProjects()">
+      View Our Work
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Slide controls -->
+  <div class="hero-controls" *ngIf="heroSlides.length > 1">
+    <button class="hero-arrow hero-prev" (click)="prevSlide()" aria-label="Previous">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="hero-dots">
+      <button *ngFor="let s of heroSlides; let i = index"
+              class="hero-dot" [class.active]="i === currentSlide"
+              (click)="goToSlide(i)"></button>
+    </div>
+    <button class="hero-arrow hero-next" (click)="nextSlide()" aria-label="Next">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+
+  <!-- Slide counter -->
+  <div class="hero-counter" *ngIf="heroSlides.length > 1">
+    <span class="counter-current">{{ currentSlide + 1 | number:'2.0' }}</span>
+    <span class="counter-sep"></span>
+    <span class="counter-total">{{ heroSlides.length | number:'2.0' }}</span>
+  </div>
+</section>
+
+<!-- ===== PAST PROJECTS ===== -->
+<section class="projects-section" id="projects">
+  <div class="projects-header">
+    <span class="section-eyebrow">OUR WORK</span>
+    <h2 class="projects-title">PAST PROJECTS</h2>
+  </div>
+
+  <div class="projects-grid">
+    <!-- First tile: full width (featured) -->
+    <div class="project-tile project-tile--featured"
+         *ngIf="projects[0]"
+         (click)="openProject(projects[0].slug)"
+         (mouseenter)="hoveredProject = projects[0].slug"
+         (mouseleave)="hoveredProject = null">
+      <img [src]="projects[0].posterSrc" [alt]="projects[0].title" class="tile-img" loading="lazy">
+      <div class="tile-overlay" [class.visible]="hoveredProject === projects[0].slug">
+        <div class="tile-meta">
+          <span class="tile-category">{{ projects[0].category }}</span>
+          <h3 class="tile-title">{{ projects[0].title }}</h3>
+          <p class="tile-subtitle">{{ projects[0].subtitle }}</p>
+        </div>
+        <div class="tile-cta">View Project →</div>
+      </div>
+      <div class="tile-base-label">
+        <span>{{ projects[0].title }}</span>
+        <span class="tile-base-year">{{ projects[0].year }}</span>
+      </div>
+    </div>
+
+    <!-- Remaining 4 tiles in a 2x2 grid -->
+    <div class="projects-subgrid">
+      <div class="project-tile"
+           *ngFor="let project of projects.slice(1)"
+           (click)="openProject(project.slug)"
+           (mouseenter)="hoveredProject = project.slug"
+           (mouseleave)="hoveredProject = null">
+        <img [src]="project.posterSrc" [alt]="project.title" class="tile-img" loading="lazy">
+        <div class="tile-overlay" [class.visible]="hoveredProject === project.slug">
+          <div class="tile-meta">
+            <span class="tile-category">{{ project.category }}</span>
+            <h3 class="tile-title">{{ project.title }}</h3>
+            <p class="tile-subtitle">{{ project.subtitle }}</p>
+          </div>
+          <div class="tile-cta">View Project →</div>
+        </div>
+        <div class="tile-base-label">
+          <span>{{ project.title }}</span>
+          <span class="tile-base-year">{{ project.year }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
