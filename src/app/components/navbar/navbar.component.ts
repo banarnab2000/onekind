@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
 
   navLinks = [
     { label: 'Home',       path: '/' },
-    { label: 'Projects',   path: '/',      fragment: 'projects' },
+    { label: 'Achievements', path: '/',      fragment: 'projects' },
     { label: 'Services',   path: '/services' },
     { label: 'About Us',   path: '/about' },
     { label: 'Contact Us', path: '/contact' }

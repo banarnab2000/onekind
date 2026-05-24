@@ -19,8 +19,8 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
   lightboxOpen = false;
   lightboxIndex = 0;
 
-  // Video sound
-  videoMuted = true;
+  // Per-video mute state (index -> muted)
+  videoMutedMap: Record<number, boolean> = {};
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
@@ -31,6 +31,7 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
       this.notFound = !this.project;
       window.scrollTo({ top: 0 });
       this.lightboxOpen = false;
+      this.videoMutedMap = {}; // reset all per-video mute states
     });
   }
 
@@ -73,9 +74,13 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     if (e.key === 'ArrowLeft') this.lightboxPrev();
   }
 
-  toggleMute(videoEl: HTMLVideoElement) {
+  toggleMute(videoEl: HTMLVideoElement, index: number) {
     videoEl.muted = !videoEl.muted;
-    this.videoMuted = videoEl.muted;
+    this.videoMutedMap[index] = videoEl.muted;
+  }
+
+  isVideoMuted(index: number): boolean {
+    return this.videoMutedMap[index] !== false; // default muted
   }
 
   onLightboxBackdrop(e: MouseEvent) {

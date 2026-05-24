@@ -39,11 +39,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       },
       error: () => {
         this.heroSlides = [
-          'assets/upcoming/Purple Flames - Pitch deck 2026_page-0008.jpg',
-          'assets/upcoming/Purple Flames - Pitch deck 2026_page-0010.jpg',
-          'assets/upcoming/Purple Flames - Pitch deck 2026_page-0011.jpg',
-          'assets/upcoming/Purple Flames - Pitch deck 2026_page-0012.jpg',
-          'assets/upcoming/Purple Flames - Pitch deck 2026_page-0013.jpg'
+          'assets/upcoming/Purple Flames Tour.jpg',
+          'assets/upcoming/AR Rahman Sufi.jpg',
         ].map(src => ({ src }));
         this.startSlideshow();
       }

@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <base href="/">
   <meta charset="utf-8">
   <title>ONEKIND – Live Entertainment Platform</title>
   <meta name="description" content="ONEKIND is a visionary live entertainment platform that curates original shows and launches breakthrough artists.">
@@ -14,6 +15,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
+  <script>
+    window.onerror = function(message, source, lineno, colno, error) {
+      var d = document.createElement('div');
+      d.style.cssText = 'position:fixed;top:0;left:0;right:0;background:red;color:white;z-index:9999;padding:20px;font-family:sans-serif;white-space:pre-wrap;';
+      d.innerHTML = '<h2>JS Error:</h2><p>' + message + '</p><p>' + (error && error.stack ? error.stack : '') + '</p>';
+      document.body.appendChild(d);
+    };
+    window.addEventListener('unhandledrejection', function(event) {
+      var d = document.createElement('div');
+      d.style.cssText = 'position:fixed;top:0;left:0;right:0;background:red;color:white;z-index:9999;padding:20px;font-family:sans-serif;white-space:pre-wrap;';
+      d.innerHTML = '<h2>Promise Rejection:</h2><p>' + event.reason + '</p><p>' + (event.reason && event.reason.stack ? event.reason.stack : '') + '</p>';
+      document.body.appendChild(d);
+    });
+  </script>
   <app-root></app-root>
 </body>
 </html>

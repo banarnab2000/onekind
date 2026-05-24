@@ -53,8 +53,8 @@ export class AboutComponent implements OnInit, AfterViewInit {
   ];
 
   stats = [
-    { value: '6+', label: 'Shows' },
-    { value: '15+', label: 'Headliner Artists' },
+    { value: '20+', label: 'Shows' },
+    { value: '2000+', label: 'Artist Network' },
     { value: '20+', label: 'Brand Partners' },
     { value: '∞', label: 'Unforgettable Moments' }
   ];
